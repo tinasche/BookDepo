@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BookDepo.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,12 +30,14 @@ namespace BookDepo
         {
             services.AddDbContext<BooksDepoContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("BookDepoConnString")));
-            
+
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IBookService, BooksRepo>();
             
-            services.AddTransient<IBookService, BooksRepo>();
-            
-            services.AddTransient<IAuthorService, AuthorsRepo>();
+            services.AddScoped<IAuthorService, AuthorsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

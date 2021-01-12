@@ -64,3 +64,5 @@ C:\Users\TinashePC\Projects\BookDepo\bin\Debug\netcoreapp3.1\runtimes\win-x86\na
 C:\Users\TinashePC\Projects\BookDepo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\TinashePC\Projects\BookDepo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\TinashePC\Projects\BookDepo\obj\Debug\netcoreapp3.1\BookDepo.csproj.CopyComplete
+C:\Users\TinashePC\Projects\BookDepo\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\TinashePC\Projects\BookDepo\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
