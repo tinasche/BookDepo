@@ -46,7 +46,7 @@ namespace BookDepo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetBookById")]
         public ActionResult <BookReadDto> GetBookById(int id)
         {
             var book = _bookRepo.GetBookById(id);
@@ -63,7 +63,9 @@ namespace BookDepo.Controllers
         {
             var bookItem = _mapper.Map<Book>(bookAddDto);
             _bookRepo.CreateBook(bookItem);
-            return Ok();
+            var bookDTO = _mapper.Map<BookReadDto>(bookItem);
+            
+            return CreatedAtRoute(nameof(GetBookById), new { Id = bookDTO.Id }, bookDTO);
         }
     }
 }

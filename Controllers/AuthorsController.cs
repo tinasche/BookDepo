@@ -42,8 +42,8 @@ namespace BookDepo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public ActionResult<Author> GetAuthorById(int id)
+        [HttpGet("{id}", Name="GetAuthorById")]
+        public ActionResult<AuthorReadDto> GetAuthorById(int id)
         {
             var theAuthor = _authorRepo.GetAuthorById(id);
             if (theAuthor != null)
@@ -52,6 +52,16 @@ namespace BookDepo.Controllers
                 return Ok(authorDTO);
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<AuthorReadDto> AddAuthor(AuthorAddDto theAuthor)
+        {
+            var authorContent = _mapper.Map<Author>(theAuthor);
+            _authorRepo.AddAuthor(authorContent);
+            var authorOutDto = _mapper.Map<AuthorReadDto>(authorContent);
+
+            return CreatedAtRoute(nameof(GetAuthorById), new { Id = authorOutDto.Id }, authorOutDto);
         }
         
     }
