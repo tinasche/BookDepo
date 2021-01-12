@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,9 +27,14 @@ namespace BookDepo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BooksDepoContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("BookDepoConnString")));
+            
             services.AddControllers();
-            services.AddTransient<IBookService, MockBookRepo>();
-            services.AddTransient<IAuthorService, MockAuthorRepo>();
+            
+            services.AddTransient<IBookService, BooksRepo>();
+            
+            services.AddTransient<IAuthorService, AuthorsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

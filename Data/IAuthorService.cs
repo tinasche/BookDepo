@@ -3,6 +3,7 @@ using BookDepo.Models;
 
 namespace BookDepo.Data
 {
+    //TODO: Work on DbContext for this implementation
     public interface IAuthorService
     {
         IEnumerable<Author> GetAllAuthors();
