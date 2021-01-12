@@ -10,6 +10,7 @@ namespace BookDepo.Profiles
         {
             // source -> target
             CreateMap<Author, AuthorReadDto>();
+            CreateMap<AuthorAddDto, Author>();
         }
     }
 }

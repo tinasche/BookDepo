@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookDepo.Models;
@@ -14,12 +15,18 @@ namespace BookDepo.Data
         }
         public void CreateBook(Book book)
         {
-            throw new System.NotImplementedException();
+            if (book == null)
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+            _bpContext.Books.Add(book);
+            _bpContext.SaveChanges();
         }
 
         public void DeleteBook(int id)
         {
-            throw new System.NotImplementedException();
+            
+            _bpContext.SaveChanges();
         }
 
         public IEnumerable<Book> GetAllBooks()
@@ -34,7 +41,8 @@ namespace BookDepo.Data
 
         public void UpdateBook(int id)
         {
-            throw new System.NotImplementedException();
+            
+            _bpContext.SaveChanges();
         }
     }
 }

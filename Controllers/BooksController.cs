@@ -57,6 +57,13 @@ namespace BookDepo.Controllers
             }
             return NotFound();
         }
-        
+
+        [HttpPost]
+        public ActionResult <BookReadDto> AddBook(BookAddDto bookAddDto)
+        {
+            var bookItem = _mapper.Map<Book>(bookAddDto);
+            _bookRepo.CreateBook(bookItem);
+            return Ok();
+        }
     }
 }
