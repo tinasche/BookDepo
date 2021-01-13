@@ -57,6 +57,11 @@ namespace BookDepo.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Create a new book resource.
+        /// </summary>
+        /// <param name="bookAddDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<BookReadDto> AddBook(BookAddDto bookAddDto)
         {
@@ -67,6 +72,11 @@ namespace BookDepo.Controllers
             return CreatedAtRoute(nameof(GetBookById), new { Id = bookDTO.Id }, bookDTO);
         }
 
+        /// <summary>
+        /// DELETE a book by its id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public ActionResult DeleteBook(int id)
         {
