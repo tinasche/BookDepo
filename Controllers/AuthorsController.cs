@@ -34,7 +34,7 @@ namespace BookDepo.Controllers
                 return Ok(authorDTOs);
             }
             return NoContent();
-            
+
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace BookDepo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}", Name="GetAuthorById")]
+        [HttpGet("{id}", Name = "GetAuthorById")]
         public ActionResult<AuthorReadDto> GetAuthorById(int id)
         {
             var theAuthor = _authorRepo.GetAuthorById(id);
@@ -59,10 +59,38 @@ namespace BookDepo.Controllers
         {
             var authorContent = _mapper.Map<Author>(theAuthor);
             _authorRepo.AddAuthor(authorContent);
+
             var authorOutDto = _mapper.Map<AuthorReadDto>(authorContent);
 
             return CreatedAtRoute(nameof(GetAuthorById), new { Id = authorOutDto.Id }, authorOutDto);
         }
-        
+
+        //TODO: Workout the conflict of deleting an author that is part of a book instance. Since they are connected!😏 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteAuthor(int id)
+        {
+            var theAuthor = _authorRepo.GetAuthorById(id);
+            if (theAuthor == null)
+            {
+                return NotFound(nameof(theAuthor));
+            }
+            _authorRepo.DeleteAuthor(theAuthor);
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateAuthon(int id, AuthorAddDto authorAddDto)
+        {
+            var theAuthor = _authorRepo.GetAuthorById(id);
+            if (theAuthor == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(authorAddDto, theAuthor); // this syntax allows to update like(source, target)
+            _authorRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

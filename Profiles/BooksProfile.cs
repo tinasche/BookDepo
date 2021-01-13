@@ -10,7 +10,7 @@ namespace BookDepo.Profiles
         {
             // source -> target
             CreateMap<Book, BookReadDto>();
-            CreateMap<BookAddDto, Book>();
+            CreateMap<BookAddDto, Book>(); // used with updates as well
 
         }
         

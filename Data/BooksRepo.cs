@@ -23,10 +23,18 @@ namespace BookDepo.Data
             _bpContext.SaveChanges();
         }
 
+        public void DeleteBook(Book book)
+        {
+            if (book != null)
+            {
+                _bpContext.Books.Remove(book);
+                _bpContext.SaveChanges();
+            }            
+        }
+
         public void DeleteBook(int id)
         {
-            
-            _bpContext.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Book> GetAllBooks()
@@ -39,9 +47,13 @@ namespace BookDepo.Data
             return _bpContext.Books.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpdateBook(int id)
+        public void UpdateBook(Book book)
         {
-            
+            // Nothing
+        }
+
+        public void SaveChanges()
+        {
             _bpContext.SaveChanges();
         }
     }

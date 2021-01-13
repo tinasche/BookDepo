@@ -8,8 +8,7 @@ namespace BookDepo.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public Author Author { get; set; }
+        public Author Author { get; set; }  // TODO: Check on Stored Procedures for adding author.id in the database.
 
         [Required]
         public string Genre { get; set; }

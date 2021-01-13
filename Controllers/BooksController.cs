@@ -46,26 +46,56 @@ namespace BookDepo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}", Name="GetBookById")]
-        public ActionResult <BookReadDto> GetBookById(int id)
+        [HttpGet("{id}", Name = "GetBookById")]
+        public ActionResult<BookReadDto> GetBookById(int id)
         {
             var book = _bookRepo.GetBookById(id);
             if (book != null)
             {
-                var bookDTO = _mapper.Map<BookReadDto>(book);
-                return Ok(bookDTO);
+                return Ok(_mapper.Map<BookReadDto>(book));
             }
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult <BookReadDto> AddBook(BookAddDto bookAddDto)
+        public ActionResult<BookReadDto> AddBook(BookAddDto bookAddDto)
         {
             var bookItem = _mapper.Map<Book>(bookAddDto);
             _bookRepo.CreateBook(bookItem);
             var bookDTO = _mapper.Map<BookReadDto>(bookItem);
-            
+
             return CreatedAtRoute(nameof(GetBookById), new { Id = bookDTO.Id }, bookDTO);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteBook(int id)
+        {
+            var theBook = _bookRepo.GetBookById(id);
+            if (theBook == null)
+            {
+                return NotFound("Book Not Available as a Resource.");
+            }
+            _bookRepo.DeleteBook(theBook);
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateBook(int id, BookAddDto bookDto)
+        {
+            var theBook = _bookRepo.GetBookById(id);
+            if (theBook == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(bookDto, theBook);
+
+            _bookRepo.UpdateBook(theBook);
+            _bookRepo.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }

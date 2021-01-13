@@ -7,7 +7,6 @@ namespace BookDepo.Dtos
     public class BookAddDto
     {
 
-        [Required]
         public Author Author { get; set; }
 
         [Required]
