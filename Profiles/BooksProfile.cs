@@ -11,7 +11,7 @@ namespace BookDepo.Profiles
             // source -> target
             CreateMap<Book, BookReadDto>();
             CreateMap<BookAddDto, Book>(); // used with updates as well
-
+            CreateMap<Book, BookAddDto>();
         }
         
     }

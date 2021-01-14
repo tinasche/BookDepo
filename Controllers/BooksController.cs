@@ -3,6 +3,7 @@ using AutoMapper;
 using BookDepo.Data;
 using BookDepo.Dtos;
 using BookDepo.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookDepo.Controllers
@@ -90,6 +91,12 @@ namespace BookDepo.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Update a book resource.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bookDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public ActionResult UpdateBook(int id, BookAddDto bookDto)
         {
@@ -101,6 +108,30 @@ namespace BookDepo.Controllers
 
             _mapper.Map(bookDto, theBook);
 
+            _bookRepo.UpdateBook(theBook);
+            _bookRepo.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult PartialBookUpdate(int id, JsonPatchDocument<BookAddDto> patchDoc)
+        {
+            var theBook = _bookRepo.GetBookById(id);
+            if (theBook == null)
+            {
+                return NotFound();
+            }
+
+            var bookToPatch = _mapper.Map<BookAddDto>(theBook);
+            patchDoc.ApplyTo(bookToPatch, ModelState);
+
+            if (!TryValidateModel(bookToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(bookToPatch, theBook);
             _bookRepo.UpdateBook(theBook);
             _bookRepo.SaveChanges();
 

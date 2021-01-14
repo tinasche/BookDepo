@@ -11,6 +11,7 @@ namespace BookDepo.Profiles
             // source -> target
             CreateMap<Author, AuthorReadDto>();
             CreateMap<AuthorAddDto, Author>(); // use with updates as well.
+            CreateMap<Author, AuthorAddDto>();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookDepo.Models
@@ -8,8 +9,9 @@ namespace BookDepo.Models
         [Key]
         public int Id { get; set; }
 
-        public Author Author { get; set; }  // TODO: Check on Stored Procedures for adding author.id in the database.
-
+        [Required]
+        public Author Author { get; set; }
+        
         [Required]
         public string Genre { get; set; }
 
