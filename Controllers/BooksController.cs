@@ -41,6 +41,7 @@ namespace BookDepo.Controllers
             }
             return NoContent();
         }
+        
 
         /// <summary>
         /// GET method to fetch a book based on its Id.

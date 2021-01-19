@@ -65,7 +65,7 @@ namespace BookDepo.Controllers
             return CreatedAtRoute(nameof(GetAuthorById), new { Id = authorOutDto.Id }, authorOutDto);
         }
 
-        //TODO: Workout the conflict of deleting an author that is part of a book instance. Since they are connected!😏 
+        
         [HttpDelete("{id}")]
         public ActionResult DeleteAuthor(int id)
         {

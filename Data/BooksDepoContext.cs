@@ -9,6 +9,8 @@ namespace BookDepo.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Club> Clubs { get; set; }
+        public DbSet<Patron> Patrons { get; set; }
 
     }
 }
