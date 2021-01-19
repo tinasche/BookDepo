@@ -10,7 +10,7 @@ namespace BookDepo.Models
         public int Id { get; set; }
 
         [Required]
-        public Author Author { get; set; }
+        public string Author { get; set; }
         
         [Required]
         public string Genre { get; set; }

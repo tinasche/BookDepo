@@ -1,3 +1,4 @@
 TODO: Refactor the models to be stand-alone
 TODO: Rollback the current 'InitialMigrations' migration
 TODO: Add a Patrons resource
+TODO: Use class inheritance for *ADD* and *UPDATE* Dtos
