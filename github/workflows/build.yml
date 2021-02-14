@@ -12,6 +12,6 @@ jobs:
         - name: Return current directory
           run: pwd
         - name: Show directory listing
-          run: ls
+          run: ls -la
         - name: Chck dotnet availability
           run: dotnet --version
