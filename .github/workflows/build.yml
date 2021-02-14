@@ -4,14 +4,15 @@ name: Build BookDepo API
 on: push
 # what to do
 jobs:
-    - name: Build the App # first job of the day
-      runs-on: ubuntu-latest
-      steps:
-        - name: Pull the code
-          uses: actions/checkout@v2 # copies code from remote repo to vm
-        - name: Return current directory
-          run: pwd
-        - name: Show directory listing
-          run: ls -la
-        - name: Chck dotnet availability
-          run: dotnet --version
+    build:
+        name: Build the App # first job of the day
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pull the code
+              uses: actions/checkout@v2 # copies code from remote repo to vm
+            - name: Return current directory
+              run: pwd
+            - name: Show directory listing
+              run: ls -la
+            - name: Chck dotnet availability
+              run: dotnet --version
