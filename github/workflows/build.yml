@@ -3,8 +3,8 @@ name: Build BookDepo App
 on: [push]
 
 jobs:
-	build:
-		- name: Build the App
+  build:
+    - name: Build the App
 		  runs-on: ubuntu-latest
 		  steps:
 		  	- name: Pull Code
