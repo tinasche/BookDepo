@@ -4,7 +4,7 @@ name: Build BookDepo API
 on: push
 # what to do
 jobs:
-    build:
+    build: # Its a build job
         name: Build the App # first job of the day
         runs-on: ubuntu-latest
         steps:
@@ -14,5 +14,5 @@ jobs:
               run: pwd
             - name: Show directory listing
               run: ls -la
-            - name: Chck dotnet availability
-              run: dotnet --version
+            - name: Build with dotnet cli
+              run: dotnet build
