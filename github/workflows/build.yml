@@ -1,17 +1,17 @@
-name: Build BookDepo App
-
-on: [push]
-
+# name for the entire pipeline
+name: Build BookDepo API
+# event triggers!
+on: push
+# what to do
 jobs:
-  build:
-    - name: Build the App
-		  runs-on: ubuntu-latest
-		  steps:
-		  	- name: Pull Code
-			  uses: actions/checkout@v2
-			- name: Print Current Directory
-			  run: pwd
-			- name: Show files in Directory
-			  run: ls
-			- name: Check dotnet availability
-			  run: dotnet --version
+    - name: Build the App # first job of the day
+      runs-on: ubuntu-latest
+      steps:
+        - name: Pull the code
+          uses: actions/checkout@v2 # copies code from remote repo to vm
+        - name: Return current directory
+          run: pwd
+        - name: Show directory listing
+          run: ls
+        - name: Chck dotnet availability
+          run: dotnet --version
