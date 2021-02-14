@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Pull the code
-              uses: actions/checkout@v2 # copies code from remote repo to vm
+              uses: actions/checkout@v2 # copies code from remote repo to vm (build agent)
             - name: Return current directory
               run: pwd
             - name: Show directory listing
